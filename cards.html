@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cream">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHAKESVILLA — 3D Menu Cards // Interactive Showcase</title>
+  <meta name="description" content="Dedicated interactive 3D Menu Cards showcase for Shakesvilla. Explore craft thick shakes, vintage corner, dry fruit classics, and refreshing mojitos.">
+
+  <!-- Google Fonts: Pixelify Sans + Geist Mono (dversostudio.io fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Dedicated 3D Lab Page Custom Enhancements */
+    body.lab-page {
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .lab-hud-telemetry {
+      position: fixed;
+      top: 100px;
+      left: var(--gutter);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .lab-hud-telemetry .active-val {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .lab-controls-bar {
+      position: fixed;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+      align-items: center;
+    }
+
+    .stage-fullscreen {
+      width: 95vw;
+      max-width: 1560px;
+      height: 65vh;
+      display: flex;
+      gap: 1.8vw;
+      justify-content: flex-start;
+      align-items: stretch;
+      perspective: 1400px;
+      overflow-x: auto;
+      padding: 1vw 1vw 2vw 1vw;
+      scroll-snap-type: x mandatory;
+      z-index: 10;
+    }
+
+    .stage-fullscreen::-webkit-scrollbar {
+      height: 6px;
+    }
+    .stage-fullscreen::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .lab-watermark {
+      position: fixed;
+      bottom: 35px;
+      left: var(--gutter);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .lab-watermark-right {
+      position: fixed;
+      bottom: 35px;
+      right: var(--gutter);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="lab-page">
+
+  <!-- Fixed Header -->
+  <header class="dverso_header_content">
+    <a href="index.html" class="dverso_header_brand">
+      <span class="brand-bold">SHAKESVILLA // MENU CARDS</span>
+      <span id="live-header-clock">--:--:--</span>, IST — HALDWANI <span class="caret">_</span>
+    </a>
+
+    <div class="dverso_header_buttons">
+      <!-- Return to Home -->
+      <a href="index.html" class="dverso_btn outline" id="btn-return-home">
+        ← BACK TO HOME
+      </a>
+
+      <!-- Theme Switcher -->
+      <button class="dverso_btn outline" id="btn-theme-toggle" aria-label="Toggle Color Theme">
+        <span id="theme-btn-label">THEME: DARK</span>
+      </button>
+
+      <!-- Audio Switch -->
+      <button class="dverso_btn icon-btn outline hide-mobile" id="btn-audio-toggle" title="Toggle Sound" aria-label="Toggle Sound">
+        <span id="audio-icon">🔊</span>
+      </button>
+
+      <!-- Reserve -->
+      <button class="dverso_btn" id="btn-reserve" aria-label="Reserve Batch">
+        RESERVE BATCH
+      </button>
+    </div>
+  </header>
+
+  <!-- Real-Time 3D Angle Telemetry HUD -->
+  <div class="lab-hud-telemetry hide-mobile">
+    <div>// 3D MENU CARDS ENGINE [ 4 DECKS ]</div>
+    <div>ROTATION-X: <span class="active-val" id="hud-rot-x">0.00°</span></div>
+    <div>ROTATION-Y: <span class="active-val" id="hud-rot-y">0.00°</span></div>
+    <div>FIELD DEPTH: <span class="active-val">1400PX</span></div>
+    <div>STATUS: <span class="active-val">GYROSCOPIC TRACKING</span></div>
+  </div>
+
+  <!-- Main Unobstructed 3D Cards Stage with All 4 Decks -->
+  <main class="stage-fullscreen" id="cards-stage" role="main">
+
+    <!-- Card 01: Thick Shakes -->
+    <article class="dverso_card tilt-card" id="card-1">
+      <div>
+        <h2>THICK SHAKES <span class="card-index">[ 01 ]</span></h2>
+        <div class="we_know_how_to_do_these_things">
+          <div class="card-item" data-origin-ref="kitkat">
+            <span>KitKat Loaded</span>
+            <span class="item-spec">₹109</span>
+          </div>
+          <div class="card-item" data-origin-ref="oreo">
+            <span>Dark Oreo</span>
+            <span class="item-spec">₹109</span>
+          </div>
+          <div class="card-item" data-origin-ref="nutella">
+            <span>Nutella Thick Shake</span>
+            <span class="item-spec">₹129</span>
+          </div>
+          <div class="card-item" data-origin-ref="irish">
+            <span>Irish Coffee Shake</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="coldcoffee">
+            <span>Cold Coffee</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="blackcurrant">
+            <span>Black Currant Shake</span>
+            <span class="item-spec">₹95</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer-action">
+        <span style="color: var(--text-dim);">DENSE VELVET</span>
+        <button class="btn-card">ORDER SHAKE →</button>
+      </div>
+    </article>
+
+    <!-- Card 02: Vintage Corner -->
+    <article class="dverso_card tilt-card" id="card-2">
+      <div>
+        <h2>VINTAGE CORNER <span class="card-index">[ 02 ]</span></h2>
+        <div class="we_know_how_to_do_these_things">
+          <div class="card-item" data-origin-ref="strawberry">
+            <span>Strawberry Splash 🍓</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="butterscotch">
+            <span>Butterscotch Shake</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="pineapple">
+            <span>Pineapple Rich Shake</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="mango">
+            <span>Alphonso Mango</span>
+            <span class="item-spec">₹100</span>
+          </div>
+          <div class="card-item" data-origin-ref="vanilla">
+            <span>Creamy Vanilla</span>
+            <span class="item-spec">₹89</span>
+          </div>
+          <div class="card-item" data-origin-ref="vintage-milk">
+            <span>Farm Fresh Milk</span>
+            <span class="item-spec">CHILLED</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer-action">
+        <span style="color: var(--text-dim);">REAL FRUIT PURÉE</span>
+        <button class="btn-card">ORDER VINTAGE →</button>
+      </div>
+    </article>
+
+    <!-- Card 03: Dry Fruits & Chai -->
+    <article class="dverso_card tilt-card" id="card-3">
+      <div>
+        <h2>DRY FRUIT & TEA <span class="card-index">[ 03 ]</span></h2>
+        <div class="we_know_how_to_do_these_things">
+          <div class="card-item" data-origin-ref="kesar">
+            <span>Kesar Pista Royal 🥜</span>
+            <span class="item-spec">₹115</span>
+          </div>
+          <div class="card-item" data-origin-ref="kaju">
+            <span>Kaju Kishmish Shake 🥜</span>
+            <span class="item-spec">₹109</span>
+          </div>
+          <div class="card-item" data-origin-ref="chai">
+            <span>Masala Chai ☕</span>
+            <span class="item-spec">₹55</span>
+          </div>
+          <div class="card-item" data-origin-ref="adrak">
+            <span>Adrak Tulsi Chai ☕</span>
+            <span class="item-spec">₹55</span>
+          </div>
+          <div class="card-item" data-origin-ref="saffron">
+            <span>Kashmiri Kesar</span>
+            <span class="item-spec">ROYAL LOT</span>
+          </div>
+          <div class="card-item" data-origin-ref="cardamom">
+            <span>Green Cardamom</span>
+            <span class="item-spec">SPICED</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer-action">
+        <span style="color: var(--text-dim);">ROYAL BLENDS</span>
+        <button class="btn-card">ORDER CLASSIC →</button>
+      </div>
+    </article>
+
+    <!-- Card 04: Mojitos & Coolers -->
+    <article class="dverso_card tilt-card" id="card-4">
+      <div>
+        <h2>MOJITOS & FIZZ <span class="card-index">[ 04 ]</span></h2>
+        <div class="we_know_how_to_do_these_things">
+          <div class="card-item" data-origin-ref="mojito">
+            <span>Virgin Mint Mojito 🌿</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="watermelon">
+            <span>Watermelon Mojito</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="blue">
+            <span>Blue Margherita</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="peach">
+            <span>Classic Peach Mojito</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="green">
+            <span>Green Granny Apple</span>
+            <span class="item-spec">₹99</span>
+          </div>
+          <div class="card-item" data-origin-ref="lemonade">
+            <span>Masala Lemonade 🍋</span>
+            <span class="item-spec">₹100</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer-action">
+        <span style="color: var(--text-dim);">SPARKLING FIZZ</span>
+        <button class="btn-card">ORDER MOCKTAIL →</button>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Interactive Controls Bar -->
+  <div class="lab-controls-bar">
+    <button class="dverso_btn outline" id="btn-reset-tilt">RESET TILT</button>
+    <a href="index.html#projects-section" class="dverso_btn outline">VIEW ALL HARVESTS ↓</a>
+    <a href="index.html" class="dverso_btn">← RETURN TO HOME</a>
+  </div>
+
+  <!-- Corner Labels -->
+  <div class="lab-watermark">
+    BASED IN HALDWANI, INDIA // 29.2183° N, 79.5130° E
+  </div>
+  <div class="lab-watermark-right hide-mobile">
+    [ DRAG / MOVE CURSOR TO ROTATE CARDS ]
+  </div>
+
+  <!-- Slide-Out Project Dossier Drawer -->
+  <div class="modal_backdrop" id="modal-backdrop"></div>
+  <aside class="dverso_modal" id="project-modal" role="dialog">
+    <div class="modal_header">
+      <span style="font-size: 0.85rem; color: var(--accent);">// HARVEST PROFILE DOSSIER</span>
+      <button class="dverso_btn small outline" id="btn-modal-close">[ CLOSE ✕ ]</button>
+    </div>
+
+    <div style="overflow-y: auto; flex: 1; padding-right: 8px;">
+      <h2 class="modal_title" id="m-name">ETHIOPIA YIRGACHEFFE</h2>
+      <p style="color: var(--text-dim); margin-top: 4px;" id="m-region">Gedeo Zone, Southern Ethiopia</p>
+
+      <div class="modal_meta_grid">
+        <div class="modal_meta_item">
+          <span class="label">PROCESS METHOD</span>
+          <div class="val" id="m-process">Washed Grade 1</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">ALTITUDE</span>
+          <div class="val" id="m-elev">2,050M</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">SCA SCORE</span>
+          <div class="val" style="color: var(--accent);" id="m-score">88.75 SCA</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">ROAST PROFILE</span>
+          <div class="val" id="m-roast">Light Nordic</div>
+        </div>
+      </div>
+
+      <div>
+        <span style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">// SENSORY CUPPING NOTES</span>
+        <p class="modal_notes" id="m-notes">
+          Jasmine blossom, bergamot rind, candied lemon zest, Earl Grey finish.
+        </p>
+      </div>
+
+      <div style="margin-top: 2vw; border-top: 1px solid var(--border-line); padding-top: 1.5vw;">
+        <button class="dverso_btn" id="btn-request-spec" style="width: 100%;">
+          REQUEST BATCH SPECIMEN
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>

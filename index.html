@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cream">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHAKESVILLA — Artisanal Coffee Lab // Haldwani</title>
+  <meta name="description" content="Artisanal coffee roastery based in Haldwani, India. Designed in the exact signature aesthetic of dverso studio with Pixelify Sans typography, 3D interactive floating cards, and single-origin micro-lots.">
+
+  <!-- Google Fonts: Pixelify Sans + Geist Mono (Exact fonts used by dversostudio.io) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. DVERSO SIGNATURE LOADER WITH GOOEY GRADIENT BLOB
+       ====================================================================== -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="gradient-bg">
+      <div class="gradient-blob"></div>
+    </div>
+    <div class="loader_center">
+      <h1 class="loader_brand">SHAKESVILLA</h1>
+      <p style="font-family: var(--font-mono); color: #a0a0a0; font-size: 0.9rem; margin-top: 10px; letter-spacing: 0.2em;">
+        HALDWANI ROASTERY LAB // 29.2183° N
+      </p>
+    </div>
+    <div class="loadingBar" id="loading-bar" style="--completion: 0%;">
+      <p id="loader-pct-text">LOADING 0%</p>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. FIXED HEADER (dverso_header_content)
+       ====================================================================== -->
+  <header class="dverso_header_content">
+    <a href="#hero" class="dverso_header_brand">
+      <span class="brand-bold">SHAKESVILLA</span>
+      <span id="live-header-clock">--:--:--</span>, IST — HALDWANI <span class="caret">_</span>
+    </a>
+
+    <div class="dverso_header_buttons">
+      <!-- Dedicated Menu Cards Link -->
+      <a href="cards.html" class="dverso_btn outline hide-mobile" id="btn-to-3d-lab">
+        MENU CARDS ↗
+      </a>
+
+      <!-- Theme Switcher (Signature Cream vs Dark) -->
+      <button class="dverso_btn outline" id="btn-theme-toggle" aria-label="Toggle Color Theme">
+        <span id="theme-btn-label">THEME: DARK</span>
+      </button>
+
+      <!-- Audio Haptic Feedback -->
+      <button class="dverso_btn icon-btn outline hide-mobile" id="btn-audio-toggle" title="Toggle Haptic Sound" aria-label="Toggle Sound">
+        <span id="audio-icon">🔊</span>
+      </button>
+
+      <!-- Direct Action -->
+      <button class="dverso_btn" id="btn-reserve" aria-label="Reserve Batch">
+        RESERVE BATCH
+      </button>
+
+      <!-- Minimalist Dverso Menu Toggle -->
+      <button class="dverso_btn transparent" id="btn-open-menu" aria-label="Open Navigation">
+        MENU
+      </button>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       3. FIXED FOOTER (dverso_footer_content)
+       ====================================================================== -->
+  <footer class="dverso_footer_content" aria-hidden="true">
+    <div class="dverso_est">
+      BASED IN HALDWANI, INDIA<br>
+      <span class="coords">29.2183° N, 79.5130° E // EST. 2026 // ELEV 424M</span>
+    </div>
+
+    <div class="dverso_scroll" id="scroll-cta">
+      SCROLL DOWN<br>
+      <div class="dverso_scroll_row">
+        TO DISCOVER 
+        <div class="accent">
+          <svg width="10" height="7" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.97 0.68L4.65 4.37L8.34 0.68" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       4. HERO SECTION — CLEAN, MONUMENTAL, ZERO OVERLAP
+       ====================================================================== -->
+  <section class="dverso_hero_wrap" id="hero">
+    
+    <!-- 3D Interactive Typography Vessel with Dynamic Coffee Liquid Engine -->
+    <div class="dverso_center_title" id="hero-title-stage">
+      <svg id="hero-coffee-svg" viewBox="0 0 1400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Exact Letterform Mask Clip Path for Liquid Coffee -->
+          <clipPath id="coffee-text-clip">
+            <text x="50%" y="62%" class="dverso_svg_text_mask">SHAKESVILLA</text>
+          </clipPath>
+
+          <!-- Rich Himalayan Espresso Fluid Gradient -->
+          <linearGradient id="espresso-body-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.96" />
+            <stop offset="5%" stop-color="#d97706" stop-opacity="0.96" />
+            <stop offset="16%" stop-color="#b45309" stop-opacity="0.98" />
+            <stop offset="42%" stop-color="#78350f" stop-opacity="1.0" />
+            <stop offset="82%" stop-color="#451a03" stop-opacity="1.0" />
+            <stop offset="100%" stop-color="#1c0a02" stop-opacity="1.0" />
+          </linearGradient>
+
+          <!-- Secondary Deep Wave Gradient for Fluid Depth -->
+          <linearGradient id="espresso-back-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b45309" stop-opacity="0.5" />
+            <stop offset="50%" stop-color="#451a03" stop-opacity="0.75" />
+            <stop offset="100%" stop-color="#120501" stop-opacity="0.85" />
+          </linearGradient>
+
+          <!-- Golden Crema Shimmer for Meniscus Wave Crest -->
+          <linearGradient id="crema-shimmer" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.6" />
+            <stop offset="25%" stop-color="#fbbf24" stop-opacity="0.95" />
+            <stop offset="50%" stop-color="#ffffff" stop-opacity="1.0" />
+            <stop offset="75%" stop-color="#f59e0b" stop-opacity="0.95" />
+            <stop offset="100%" stop-color="#fef3c7" stop-opacity="0.6" />
+          </linearGradient>
+        </defs>
+
+        <!-- 1. 3D Bevel / Depth Extrusion Layer Behind -->
+        <text x="50%" y="62%" class="dverso_svg_text_depth">SHAKESVILLA</text>
+
+        <!-- 2. Dynamic Liquid Coffee Fill (Masked into SHAKESVILLA letters) -->
+        <g clip-path="url(#coffee-text-clip)" id="coffee-liquid-group">
+          <!-- Back Wave (Parallax Fluid Layer) -->
+          <path id="coffee-wave-back" fill="url(#espresso-back-gradient)" d="M -100,340 L 1500,340 Z" />
+          <!-- Front Wave (Primary Rich Espresso Liquid) -->
+          <path id="coffee-wave-front" fill="url(#espresso-body-gradient)" d="M -100,340 L 1500,340 Z" />
+          <!-- Golden Crema Foam Meniscus Crest -->
+          <path id="coffee-foam-crest" stroke="url(#crema-shimmer)" stroke-width="4.5" fill="none" stroke-linecap="round" d="M -100,240 L 1500,240" />
+          <!-- Floating Crema Micro-Bubbles -->
+          <g id="coffee-bubbles-layer"></g>
+        </g>
+
+        <!-- 3. Foreground Crisp Wireframe Outline Stroke (dverso signature) -->
+        <text x="50%" y="62%" class="dverso_svg_text">SHAKESVILLA</text>
+
+        <!-- 4. Subtitle Typography -->
+        <text x="50%" y="92%" class="dverso_svg_sub">HIMALAYAN ARTISANAL ROASTERS</text>
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- ======================================================================
+       5. DEDICATED MENU CARDS SHOWCASE SECTION (MOVING CARDS)
+       ====================================================================== -->
+  <section class="cards_showcase_section" id="cards-section">
+    <div class="cards_showcase_header">
+      <div>
+        <h2 class="cards_showcase_title">
+          <span class="accent-sub">// 01 CRAFT HIGHLIGHTS</span>
+          MENU CARDS
+        </h2>
+      </div>
+      <div style="display: flex; gap: 1vw; align-items: center;">
+        <span style="font-size: 0.85rem; color: var(--text-dim); font-family: var(--font-mono);" class="hide-mobile">
+          [ MOVE MOUSE TO TILT // 4 DECKS ]
+        </span>
+        <div class="cards_nav_controls">
+          <button class="dverso_btn icon-btn outline" id="btn-cards-prev" title="Previous card" aria-label="Previous card">←</button>
+          <button class="dverso_btn icon-btn outline" id="btn-cards-next" title="Next card" aria-label="Next card">→</button>
+        </div>
+        <a href="cards.html" class="dverso_btn outline">FULLSCREEN CARDS ↗</a>
+      </div>
+    </div>
+
+    <!-- 3D Interactive Moving Cards Stage -->
+    <div class="dverso_cards_stage" id="cards-stage">
+
+      <!-- Card 01: THICK SHAKES -->
+      <article class="dverso_card tilt-card" id="card-1">
+        <div>
+          <h2>THICK SHAKES <span class="card-index">[ 01 ]</span></h2>
+          <div class="we_know_how_to_do_these_things">
+            <div class="card-item" data-origin-ref="kitkat">
+              <span>KitKat Loaded</span>
+              <span class="item-spec">₹109</span>
+            </div>
+            <div class="card-item" data-origin-ref="oreo">
+              <span>Dark Oreo</span>
+              <span class="item-spec">₹109</span>
+            </div>
+            <div class="card-item" data-origin-ref="nutella">
+              <span>Nutella Thick Shake</span>
+              <span class="item-spec">₹129</span>
+            </div>
+            <div class="card-item" data-origin-ref="irish">
+              <span>Irish Coffee Shake</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="coldcoffee">
+              <span>Cold Coffee</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="blackcurrant">
+              <span>Black Currant Shake</span>
+              <span class="item-spec">₹95</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer-action">
+          <span style="color: var(--text-dim);">DENSE VELVET</span>
+          <button class="btn-card" id="btn-explore-brews">ORDER SHAKE →</button>
+        </div>
+      </article>
+
+      <!-- Card 02: VINTAGE CORNER -->
+      <article class="dverso_card tilt-card" id="card-2">
+        <div>
+          <h2>VINTAGE CORNER <span class="card-index">[ 02 ]</span></h2>
+          <div class="we_know_how_to_do_these_things">
+            <div class="card-item" data-origin-ref="strawberry">
+              <span>Strawberry Splash 🍓</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="butterscotch">
+              <span>Butterscotch Shake</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="pineapple">
+              <span>Pineapple Rich Shake</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="mango">
+              <span>Alphonso Mango</span>
+              <span class="item-spec">₹100</span>
+            </div>
+            <div class="card-item" data-origin-ref="vanilla">
+              <span>Creamy Vanilla</span>
+              <span class="item-spec">₹89</span>
+            </div>
+            <div class="card-item" data-origin-ref="vintage-milk">
+              <span>Farm Fresh Milk</span>
+              <span class="item-spec">CHILLED</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer-action">
+          <span style="color: var(--text-dim);">REAL FRUIT PURÉE</span>
+          <button class="btn-card">ORDER VINTAGE →</button>
+        </div>
+      </article>
+
+      <!-- Card 03: DRY FRUITS & CHAI -->
+      <article class="dverso_card tilt-card" id="card-3">
+        <div>
+          <h2>DRY FRUIT & TEA <span class="card-index">[ 03 ]</span></h2>
+          <div class="we_know_how_to_do_these_things">
+            <div class="card-item" data-origin-ref="kesar">
+              <span>Kesar Pista Royal 🥜</span>
+              <span class="item-spec">₹115</span>
+            </div>
+            <div class="card-item" data-origin-ref="kaju">
+              <span>Kaju Kishmish Shake 🥜</span>
+              <span class="item-spec">₹109</span>
+            </div>
+            <div class="card-item" data-origin-ref="chai">
+              <span>Masala Chai ☕</span>
+              <span class="item-spec">₹55</span>
+            </div>
+            <div class="card-item" data-origin-ref="adrak">
+              <span>Adrak Tulsi Chai ☕</span>
+              <span class="item-spec">₹55</span>
+            </div>
+            <div class="card-item" data-origin-ref="saffron">
+              <span>Kashmiri Kesar</span>
+              <span class="item-spec">ROYAL LOT</span>
+            </div>
+            <div class="card-item" data-origin-ref="cardamom">
+              <span>Green Cardamom</span>
+              <span class="item-spec">SPICED</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer-action">
+          <span style="color: var(--text-dim);">ROYAL BLENDS</span>
+          <button class="btn-card">ORDER CLASSIC →</button>
+        </div>
+      </article>
+
+      <!-- Card 04: MOJITOS & COOLERS -->
+      <article class="dverso_card tilt-card" id="card-4">
+        <div>
+          <h2>MOJITOS & FIZZ <span class="card-index">[ 04 ]</span></h2>
+          <div class="we_know_how_to_do_these_things">
+            <div class="card-item" data-origin-ref="mojito">
+              <span>Virgin Mint Mojito 🌿</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="watermelon">
+              <span>Watermelon Mojito</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="blue">
+              <span>Blue Margherita</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="peach">
+              <span>Classic Peach Mojito</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="green">
+              <span>Green Granny Apple</span>
+              <span class="item-spec">₹99</span>
+            </div>
+            <div class="card-item" data-origin-ref="lemonade">
+              <span>Masala Lemonade 🍋</span>
+              <span class="item-spec">₹100</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer-action">
+          <span style="color: var(--text-dim);">SPARKLING CITRUS</span>
+          <button class="btn-card" id="btn-explore-origins">VIEW ALL MOCKTAILS →</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6. SECTION 02: SHAKESVILLA ARTISANAL MENU (SHAKES & BEVERAGES)
+       ====================================================================== -->
+  <section class="projects_section" id="projects-section">
+    <div class="projects_header">
+      <div>
+        <h2 class="projects_title">
+          <span class="accent-sub">// ARTISANAL ROSTER</span>
+          SHAKES & BEVERAGES
+        </h2>
+      </div>
+      <p class="projects_subtitle">
+        Craft thick shakes, vintage fruit purées, royal dry fruit blends, non-alcoholic mojitos, and slow-brewed Himalayan chai.
+      </p>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="menu_filter_bar" id="menu-filter-bar">
+      <button class="filter_pill is-active" data-filter="all">ALL ITEMS [22]</button>
+      <button class="filter_pill" data-filter="thick-shakes">THICK SHAKES [06]</button>
+      <button class="filter_pill" data-filter="vintage">VINTAGE CORNER [05]</button>
+      <button class="filter_pill" data-filter="dry-fruits">DRY FRUIT CLASSICS [02]</button>
+      <button class="filter_pill" data-filter="mojitos">MOJITOS & MOCKTAILS [07]</button>
+      <button class="filter_pill" data-filter="hot">HOT BEVERAGES [02]</button>
+    </div>
+
+    <div class="projects" id="projects-list">
+      
+      <!-- ==================== 1. SHAKES & THICK SHAKES ==================== -->
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="KitKat Loaded" 
+           data-type="Thick Shake" 
+           data-elevation="₹109" 
+           data-region="Crisp Wafer & Cream" 
+           data-score="POPULAR" 
+           data-notes="A fine blend of crushed KitKat bars, whole cow milk, and rich velvety ice cream, garnished with wafer sticks."
+           data-roast="Blended Chilled">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          KitKat Loaded
+        </span>
+        <span class="proj-type">Thick Shake</span>
+        <span class="proj-price">₹109</span>
+        <span class="proj-desc-cell hide-mobile">KitKat, real milk & rich ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="Dark Oreo" 
+           data-type="Thick Shake" 
+           data-elevation="₹109" 
+           data-region="Dark Cocoa & Crème" 
+           data-score="SIGNATURE" 
+           data-notes="A dense, indulgent blend of Oreo cookies, dark Dutch cocoa chocolate, fresh milk, and rich churned ice cream."
+           data-roast="Blended Chilled">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Dark Oreo
+        </span>
+        <span class="proj-type">Thick Shake</span>
+        <span class="proj-price">₹109</span>
+        <span class="proj-desc-cell hide-mobile">Oreo, dark chocolate, milk & ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="Nutella Thick Shake" 
+           data-type="Thick Shake" 
+           data-elevation="₹129" 
+           data-region="Hazelnut Cacao" 
+           data-score="BESTSELLER" 
+           data-notes="A fine, decadent blend of authentic Ferrero Nutella, farm-fresh milk, and rich sweet cream."
+           data-roast="Dense Blended">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Nutella Thick Shake
+        </span>
+        <span class="proj-type">Thick Shake</span>
+        <span class="proj-price">₹129</span>
+        <span class="proj-desc-cell hide-mobile">Ferrero Nutella, real milk & ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="Irish Thick Shake" 
+           data-type="Coffee Thick Shake" 
+           data-elevation="₹99" 
+           data-region="Himalayan Roast & Cream" 
+           data-score="CHEF SPEC" 
+           data-notes="A perfectly blended recipe of slow-roasted ground coffee powder, dark cocoa, cold milk, and rich ice cream."
+           data-roast="Espresso Infused">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Irish Thick Shake
+        </span>
+        <span class="proj-type">Coffee Shake</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Ground coffee, cocoa, milk & ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="Cold Coffee" 
+           data-type="Classic Blended" 
+           data-elevation="₹99" 
+           data-region="Single Origin Brew" 
+           data-score="CLASSIC" 
+           data-notes="Classic slow-churned blended cold coffee made with house-extracted espresso and sweetened chilled milk."
+           data-roast="Cold Infusion">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Cold Coffee
+        </span>
+        <span class="proj-type">Classic Coffee</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Classic blended cold coffee</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="thick-shakes"
+           data-name="Black Currant Thick Shake" 
+           data-type="Thick Shake" 
+           data-elevation="₹95" 
+           data-region="Wild Berry Purée" 
+           data-score="FRUIT CRAFT" 
+           data-notes="A luscious, velvety treat bursting with tart and sweet black currant essence, whole milk, and ice cream."
+           data-roast="Berry Velvet">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Black Currant Thick Shake
+        </span>
+        <span class="proj-type">Thick Shake</span>
+        <span class="proj-price">₹95</span>
+        <span class="proj-desc-cell hide-mobile">Luscious velvety black currant blend</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <!-- ==================== 2. VINTAGE CORNER SHAKES ==================== -->
+      <div class="project" 
+           data-category="vintage"
+           data-name="Strawberry Splash" 
+           data-type="Vintage Shake" 
+           data-elevation="₹99" 
+           data-region="Farm Strawberries" 
+           data-score="REFRESHING" 
+           data-notes="Fresh farm strawberries crushed and blended with classic dairy ice cream and chilled whole milk."
+           data-roast="Berry Cold">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Strawberry Splash 🍓
+        </span>
+        <span class="proj-type">Vintage Shake</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Fresh farm strawberries, ice cream & milk</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="vintage"
+           data-name="Butterscotch Shake" 
+           data-type="Vintage Shake" 
+           data-elevation="₹99" 
+           data-region="Caramelized Crunch" 
+           data-score="COMFORT" 
+           data-notes="A nostalgic blend of rich butterscotch extract, golden praline crunch, ice cream, and chilled milk."
+           data-roast="Golden Caramel">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Butterscotch Shake
+        </span>
+        <span class="proj-type">Vintage Shake</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Butterscotch extract, ice cream & milk</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="vintage"
+           data-name="Pineapple Rich Shake" 
+           data-type="Vintage Shake" 
+           data-elevation="₹99" 
+           data-region="Tropical Crush" 
+           data-score="ZINGY" 
+           data-notes="A tropical blend of real sun-ripened pineapple pulp, rich churned ice cream, and cold milk."
+           data-roast="Tropical Citrus">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Pineapple Rich Shake
+        </span>
+        <span class="proj-type">Vintage Shake</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Real pineapple, rich ice cream & milk</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="vintage"
+           data-name="Alphonso Mango" 
+           data-type="Vintage Shake" 
+           data-elevation="₹100" 
+           data-region="Ratnagiri King Mango" 
+           data-score="SEASONAL" 
+           data-notes="Classic mango shake made with pure golden Alphonso mango nectar, thick milk, and cream."
+           data-roast="Royal Mango">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Alphonso Mango
+        </span>
+        <span class="proj-type">Vintage Shake</span>
+        <span class="proj-price">₹100</span>
+        <span class="proj-desc-cell hide-mobile">Classic sweet mango shake</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="vintage"
+           data-name="Creamy Vanilla" 
+           data-type="Vintage Shake" 
+           data-elevation="₹89" 
+           data-region="Bourbon Vanilla" 
+           data-score="HERITAGE" 
+           data-notes="Aromatic vanilla extract and fresh milk smoothly blended with double-churned vanilla ice cream."
+           data-roast="Silky Cream">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Creamy Vanilla
+        </span>
+        <span class="proj-type">Vintage Shake</span>
+        <span class="proj-price">₹89</span>
+        <span class="proj-desc-cell hide-mobile">Vanilla extract, milk & vanilla ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <!-- ==================== 3. DRY FRUIT CLASSICS ==================== -->
+      <div class="project" 
+           data-category="dry-fruits"
+           data-name="Kesar Pista" 
+           data-type="Dry Fruit Classic" 
+           data-elevation="₹115" 
+           data-region="Kashmir Saffron & Pista" 
+           data-score="ROYAL LOT" 
+           data-notes="A fine aristocratic blend of crushed green pistachios, Kashmiri kesar (saffron strands), real milk, and rich ice cream."
+           data-roast="Saffron Velvet">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Kesar Pista 🥜
+        </span>
+        <span class="proj-type">Dry Fruit Classic</span>
+        <span class="proj-price">₹115</span>
+        <span class="proj-desc-cell hide-mobile">Kesar pista dry fruits, real milk & rich ice cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="dry-fruits"
+           data-name="Kaju Kishmish Shake" 
+           data-type="Dry Fruit Classic" 
+           data-elevation="₹109" 
+           data-region="Cashew & Golden Raisin" 
+           data-score="HERITAGE" 
+           data-notes="A royal touch of ground whole kaju (cashews) and sweet kishmish (raisins) blended with real milk and cream."
+           data-roast="Nutty Cream">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Kaju Kishmish Shake 🥜
+        </span>
+        <span class="proj-type">Dry Fruit Classic</span>
+        <span class="proj-price">₹109</span>
+        <span class="proj-desc-cell hide-mobile">Cashew & raisin royal blend with dairy cream</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <!-- ==================== 4. MOJITOS & MOCKTAILS (NON-ALCOHOLIC) ==================== -->
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Virgin Mint Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Garden Fresh Mint" 
+           data-score="CHILLED" 
+           data-notes="An ultra-refreshing beverage bursting with freshly muddled garden mint, zesty lime wedges, and sparkling soda."
+           data-roast="Sparkling Citrus">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Virgin Mint Mojito 🌿
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Fresh muddled mint & zesty lime fizz</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Refreshing Watermelon Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Summer Melon Juice" 
+           data-score="CRISP" 
+           data-notes="A tantalizing blend of juicy watermelon nectar, crushed ice, mint leaves, and zesty mojito essence."
+           data-roast="Melon Fizz">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Refreshing Watermelon Mojito
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Juicy watermelon & zesty mojito flavors</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Blue Margherita Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Blue Curacao & Mint" 
+           data-score="VIBRANT" 
+           data-notes="A vibrant non-alcoholic blend of citrusy blue curacao syrup, mint sprigs, lime, and crushed crystal ice."
+           data-roast="Electric Blue">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Blue Margherita Mojito
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Blue margherita & mint mojito botanicals</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Classic Peach Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Sun-Ripened Peach" 
+           data-score="AROMATIC" 
+           data-notes="Sweet, fragrant stone-fruit peach purée paired with fresh garden mint and a tart lime finish."
+           data-roast="Peach Fizz">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Classic Peach Mojito
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Sweet peach flavor with a zesty kick</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Green Granny Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Tart Green Apple" 
+           data-score="CRISP TART" 
+           data-notes="Crisp, tart, and refreshing Granny Smith green apple syrup muddled with mint leaves and club soda."
+           data-roast="Green Apple">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Green Granny Mojito
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Crisp & refreshing green apple flavors</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Bubbly Bubble Gum Mojito" 
+           data-type="Mocktail" 
+           data-elevation="₹99" 
+           data-region="Retro Sweet Pop" 
+           data-score="PLAYFUL" 
+           data-notes="A fun, sweet nostalgic bubblegum-flavored refreshing mocktail layered with mint and citrus fizz."
+           data-roast="Retro Fizz">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Bubbly Bubble Gum Mojito
+        </span>
+        <span class="proj-type">Mocktail</span>
+        <span class="proj-price">₹99</span>
+        <span class="proj-desc-cell hide-mobile">Fun, sweet bubblegum mocktail infusion</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="mojitos"
+           data-name="Masala Lemonade" 
+           data-type="Indian Cooler" 
+           data-elevation="₹100" 
+           data-region="Spiced Rock Salt & Cumin" 
+           data-score="CLASSIC DESI" 
+           data-notes="Classic Indian spiced lemonade infused with roasted cumin, black rock salt, fresh lemon juice, and soda."
+           data-roast="Spiced Citrus">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Masala Lemonade 🍋
+        </span>
+        <span class="proj-type">Indian Cooler</span>
+        <span class="proj-price">₹100</span>
+        <span class="proj-desc-cell hide-mobile">Classic spiced Indian salted lemonade</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <!-- ==================== 5. HOT BEVERAGES ==================== -->
+      <div class="project" 
+           data-category="hot"
+           data-name="Masala Chai" 
+           data-type="Hot Beverage" 
+           data-elevation="₹55" 
+           data-region="Cardamom & Cinnamon" 
+           data-score="WARMING" 
+           data-notes="Authentic slow-simmered mountain tea brewed with crushed cardamom, clove, cinnamon, and fresh dairy milk."
+           data-roast="Slow Simmered">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Masala Chai ☕
+        </span>
+        <span class="proj-type">Hot Chai</span>
+        <span class="proj-price">₹55</span>
+        <span class="proj-desc-cell hide-mobile">Aromatic slow-simmered spiced Indian tea</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+      <div class="project" 
+           data-category="hot"
+           data-name="Adrak Tulsi Chai" 
+           data-type="Hot Beverage" 
+           data-elevation="₹55" 
+           data-region="Kumaon Mountain Herbs" 
+           data-score="HEALING" 
+           data-notes="Invigorating herbal decoction of fresh crushed ginger root (adrak) and sacred holy basil (tulsi) leaves."
+           data-roast="Herbal Simmer">
+        <span class="proj-name">
+          <span class="proj-dot"></span>
+          Adrak Tulsi Chai ☕
+        </span>
+        <span class="proj-type">Hot Chai</span>
+        <span class="proj-price">₹55</span>
+        <span class="proj-desc-cell hide-mobile">Fresh mountain ginger & sacred tulsi brew</span>
+        <span class="proj-arrow">ORDER [ ↗ ]</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6. SECTION 03: HIMALAYAN LAB // PHILOSOPHY STATEMENT
+       ====================================================================== -->
+  <section class="lab_section" id="lab-section">
+    <div class="lab_statement">
+      <div>
+        <span style="font-family: var(--font-mono); color: var(--accent); font-size: 0.85rem; letter-spacing: 0.15em;">
+          // DOCTRINE & TERROIR
+        </span>
+        <h2 class="lab_headline" style="margin-top: 1.5vw;">
+          ACOUSTIC CAVITATION & <mark>HIMALAYAN WATER</mark> GEOMETRY.
+        </h2>
+        <p class="lab_body">
+          At 424 meters elevation at the gateway to the Kumaon Himalayas, Haldwani provides a unique thermodynamic boundary layer. Ambient air pressure alters cellular expansion within our roaster drums, avoiding scorched chaff and extracting sparkling floral aromatics with meltwater filtered through quartzite strata.
+        </p>
+      </div>
+
+      <div style="margin-top: 3vw;">
+        <button class="dverso_btn" id="btn-book-lab">BOOK LAB CALIBRATION</button>
+      </div>
+    </div>
+
+    <div class="lab_metrics">
+      <div class="metric_box">
+        <span class="metric_label">// ATMOSPHERIC PRESSURE</span>
+        <div class="metric_value">96.8 <span class="metric_unit">KPA</span></div>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 8px;">Permits lower thermal degradation threshold during first crack.</p>
+      </div>
+
+      <div class="metric_box">
+        <span class="metric_label">// GAULA RIVER RUNOFF</span>
+        <div class="metric_value">72 <span class="metric_unit">PPM TDS</span></div>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 8px;">Naturally balanced magnesium to calcium mineral extraction ratio.</p>
+      </div>
+
+      <div class="metric_box">
+        <span class="metric_label">// SENSORY TOLERANCE</span>
+        <div class="metric_value">&plusmn; 0.15 <span class="metric_unit">°C</span></div>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 8px;">High-speed infrared beam curve analysis logged every 500ms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       7. FULLSCREEN BLURRED DVERSO MENU OVERLAY (dverso_menu_content)
+       ====================================================================== -->
+  <div class="dverso_menu_content" id="menu-overlay" role="dialog" aria-modal="true">
+    <div class="dverso_menu_top">
+      <span style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent);">
+        // DIRECTORY NAVIGATION
+      </span>
+      <button class="dverso_btn" id="btn-close-menu">CLOSE [ ✕ ]</button>
+    </div>
+
+    <ul class="dverso_menu_nav">
+      <li><h1 class="menu-nav-anchor" data-target="hero">01 // INDEX</h1></li>
+      <li><h1 class="menu-nav-anchor" data-target="projects-section">02 // HARVESTS</h1></li>
+      <li><h1 class="menu-nav-anchor" data-target="lab-section">03 // HIMALAYAN LAB</h1></li>
+      <li><h1 class="menu-nav-anchor" data-action="dossier">04 // CUPPING SESSIONS</h1></li>
+      <li><h1 class="menu-nav-anchor" data-action="contact">05 // GET IN TOUCH</h1></li>
+    </ul>
+
+    <div class="dverso_menu_bottom">
+      <div>
+        <p>HALDWANI ROASTERY LAB</p>
+        <p style="color: var(--text-dim);">Kaladhungi Road, Nainital, Uttarakhand</p>
+      </div>
+      <div style="text-align: right;">
+        <p>DISPATCH: THU – TUE</p>
+        <p style="color: var(--accent);">dispatch@shakesvilla.in</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       8. SLIDE-OUT PROJECT DOSSIER DRAWER
+       ====================================================================== -->
+  <div class="modal_backdrop" id="modal-backdrop"></div>
+  <aside class="dverso_modal" id="project-modal" role="dialog">
+    <div class="modal_header">
+      <span style="font-size: 0.85rem; color: var(--accent);">// HARVEST PROFILE DOSSIER</span>
+      <button class="dverso_btn small outline" id="btn-modal-close">[ CLOSE ✕ ]</button>
+    </div>
+
+    <div style="overflow-y: auto; flex: 1; padding-right: 8px;">
+      <h2 class="modal_title" id="m-name">ETHIOPIA YIRGACHEFFE</h2>
+      <p style="color: var(--text-dim); margin-top: 4px;" id="m-region">Gedeo Zone, Southern Ethiopia</p>
+
+      <div class="modal_meta_grid">
+        <div class="modal_meta_item">
+          <span class="label">PROCESS METHOD</span>
+          <div class="val" id="m-process">Washed Grade 1</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">ALTITUDE</span>
+          <div class="val" id="m-elev">2,050M</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">SCA SCORE</span>
+          <div class="val" style="color: var(--accent);" id="m-score">88.75 SCA</div>
+        </div>
+        <div class="modal_meta_item">
+          <span class="label">ROAST PROFILE</span>
+          <div class="val" id="m-roast">Light Nordic</div>
+        </div>
+      </div>
+
+      <div>
+        <span style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">// SENSORY CUPPING NOTES</span>
+        <p class="modal_notes" id="m-notes">
+          Jasmine blossom, bergamot rind, candied lemon zest, Earl Grey finish.
+        </p>
+      </div>
+
+      <div style="margin-top: 2vw; border-top: 1px solid var(--border-line); padding-top: 1.5vw;">
+        <button class="dverso_btn" id="btn-request-spec" style="width: 100%;">
+          REQUEST BATCH SPECIMEN
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Application Logic -->
+  <script src="main.js"></script>
+</body>
+</html>

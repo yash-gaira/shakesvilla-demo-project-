@@ -1,0 +1,1142 @@
+/* ==========================================================================
+   SHAKESVILLA — HALDWANI
+   Exact 1:1 Creative Replica of DVERSO STUDIO (dversostudio.io)
+   Fonts: Pixelify Sans + Geist Mono
+   Palette: Signature Cream (#fcf6e7) / Black (#000000) / Studio Accent (#ff4c00)
+   3D Floating Cards // SVG Outline Typography // Kinetic Marquee // Project Scroller
+   ========================================================================== */
+
+/* --- CSS Variables & Theme Tokens --- */
+:root {
+  --bg-main: #fcf6e7;
+  --text-main: #000000;
+  --text-sub: rgba(0, 0, 0, 0.65);
+  --text-dim: rgba(0, 0, 0, 0.35);
+  
+  --accent: #ff4c00; /* Signature Dverso Orange */
+  --accent-blue: #006fff; /* Dverso Blue Accent */
+  --card-bg: #ffffff;
+  --card-border: #000000;
+  --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+
+  --border-line: rgba(0, 0, 0, 0.2);
+  --border-strong: #000000;
+
+  --font-pixel: 'Pixelify Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', 'Space Mono', Menlo, Consolas, monospace;
+
+  --gutter: 3.125vw;
+  --ease-dverso: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Mode Overrides (Toggleable) */
+[data-theme="dark"] {
+  --bg-main: #0a0a0a;
+  --text-main: #ffffff;
+  --text-sub: rgba(255, 255, 255, 0.7);
+  --text-dim: rgba(255, 255, 255, 0.35);
+  --card-bg: #141414;
+  --card-border: #ffffff;
+  --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  --border-line: rgba(255, 255, 255, 0.2);
+  --border-strong: #ffffff;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  user-select: none;
+  min-height: 100vh;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Custom Scrollbar like Dverso */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* --- Dverso Buttons (.dverso_btn) --- */
+.dverso_btn {
+  background-color: var(--text-main);
+  border: 1px solid var(--text-main);
+  border-radius: 2.34vw;
+  box-sizing: border-box;
+  color: var(--bg-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 0.93vw, 0.95rem);
+  font-weight: 500;
+  min-height: 2.1vw;
+  min-width: 2.1vw;
+  outline: none;
+  padding: 0.42vw 1vw;
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.dverso_btn:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.dverso_btn.outline {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--text-main);
+}
+
+.dverso_btn.outline:hover {
+  background-color: var(--text-main);
+  color: var(--bg-main);
+}
+
+.dverso_btn.transparent {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--text-main);
+}
+
+.dverso_btn.transparent:hover {
+  color: var(--accent);
+  background-color: transparent;
+}
+
+/* Small circle button for theme toggle or audio */
+.dverso_btn.icon-btn {
+  width: 2.2vw;
+  height: 2.2vw;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* --- Fixed Header (.dverso_header_content) --- */
+.dverso_header_content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.dverso_header_brand {
+  pointer-events: auto;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: clamp(0.8rem, 0.9375vw, 1.05rem);
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.dverso_header_brand .brand-bold {
+  font-family: var(--font-pixel);
+  font-size: 1.25em;
+  letter-spacing: 0.02em;
+  display: block;
+}
+
+.dverso_header_brand .caret {
+  display: inline-block;
+  font-weight: bold;
+  color: var(--accent);
+  animation: blink-anim 1s infinite steps(2, start);
+}
+
+@keyframes blink-anim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.dverso_header_buttons {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2vw;
+}
+
+/* --- Fixed Footer (.dverso_footer_content) --- */
+.dverso_footer_content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 0.9375vw, 0.95rem);
+  color: var(--text-main);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.dverso_est {
+  pointer-events: auto;
+  line-height: 1.4;
+}
+
+.dverso_est .coords {
+  color: var(--text-dim);
+  font-size: 0.85em;
+}
+
+.dverso_scroll {
+  pointer-events: auto;
+  text-align: right;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.dverso_scroll_row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.dverso_scroll .accent {
+  background-color: var(--accent);
+  border: 1.5px solid var(--text-main);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 24px;
+  transition: transform 0.2s ease;
+}
+
+.dverso_scroll:hover .accent {
+  transform: translateY(3px);
+}
+
+.dverso_scroll .accent svg {
+  animation: scroll-bounce 1.2s infinite ease-in-out;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(2px); }
+}
+
+/* --- Massive Center SVG Outline Header --- */
+.dverso_hero_wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dverso_center_title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92vw;
+  max-width: 1550px;
+  pointer-events: none;
+  z-index: 2;
+  text-align: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.dverso_center_title svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.08));
+}
+
+[data-theme="dark"] .dverso_center_title svg {
+  filter: drop-shadow(0 20px 45px rgba(255, 76, 0, 0.12));
+}
+
+/* Mask text used strictly by SVG clip-path */
+.dverso_svg_text_mask {
+  font-family: var(--font-pixel);
+  font-size: 155px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-anchor: middle;
+  fill: #ffffff;
+}
+
+/* 3D Depth Extruded Drop Layer */
+.dverso_svg_text_depth {
+  font-family: var(--font-pixel);
+  font-size: 155px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-anchor: middle;
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.18);
+  stroke-width: 3.5px;
+  transform: translate(4px, 7px);
+  filter: blur(1.5px);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .dverso_svg_text_depth {
+  stroke: rgba(255, 76, 0, 0.25);
+  filter: blur(2px) drop-shadow(0 0 10px rgba(255, 76, 0, 0.3));
+}
+
+/* Foreground Signature Wireframe Stroke */
+.dverso_svg_text {
+  font-family: var(--font-pixel);
+  font-size: 155px;
+  font-weight: 700;
+  fill: none;
+  stroke: var(--text-main);
+  stroke-width: 1.6px;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: draw-hero 2.2s var(--ease-dverso) forwards 0.3s;
+  letter-spacing: 0.05em;
+  text-anchor: middle;
+}
+
+/* Liquid Coffee Group */
+#coffee-liquid-group {
+  transition: opacity 0.25s ease-out;
+}
+
+.dverso_svg_sub {
+  font-family: var(--font-pixel);
+  font-size: 42px;
+  font-weight: 400;
+  fill: var(--text-main);
+  letter-spacing: 0.35em;
+  text-anchor: middle;
+  opacity: 0;
+  animation: fade-in-sub 1s ease forwards 1.8s;
+  transform: translateZ(15px);
+}
+
+@keyframes draw-hero {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-in-sub {
+  to { opacity: 0.85; }
+}
+
+.dverso_hero_wrap {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Dedicated 3D Cards Showcase Section (Completely Clean & Unobstructed) --- */
+.cards_showcase_section {
+  position: relative;
+  width: 100vw;
+  min-height: 90vh;
+  background-color: var(--bg-main);
+  border-top: 1.5px solid var(--border-strong);
+  padding: 6vw 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards_showcase_header {
+  width: 100%;
+  padding: 0 var(--gutter) 4vw var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cards_showcase_title {
+  font-family: var(--font-pixel);
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.cards_showcase_title .accent-sub {
+  color: var(--accent);
+  display: block;
+  font-size: 0.35em;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.6vw;
+}
+
+.dverso_cards_stage {
+  position: relative;
+  width: 95vw;
+  max-width: 1560px;
+  min-height: 520px;
+  display: flex;
+  gap: 1.6vw;
+  justify-content: flex-start;
+  align-items: stretch;
+  perspective: 1400px;
+  overflow-x: auto;
+  padding: 1vw 1vw 2.5vw 1vw;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dverso_cards_stage::-webkit-scrollbar {
+  height: 6px;
+}
+.dverso_cards_stage::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* Individual 3D Dverso Card */
+.dverso_card {
+  pointer-events: auto;
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 0.9375vw;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 34vw;
+  max-height: 520px;
+  min-height: 420px;
+  width: 22vw;
+  max-width: 340px;
+  min-width: 280px;
+  padding: 1.6vw 1.4vw;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  cursor: grab;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+.dverso_card:active {
+  cursor: grabbing;
+}
+
+.dverso_card:hover {
+  box-shadow: 0 35px 65px -15px rgba(0, 0, 0, 0.22);
+}
+
+.cards_nav_controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Card Header */
+.dverso_card h2 {
+  font-family: var(--font-pixel);
+  font-size: clamp(1.8rem, 2.4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.dverso_card .card-index {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+/* List of Card Offerings (.we_know_how_to_do_these_things) */
+.we_know_how_to_do_these_things {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  padding-top: 1.2vw;
+}
+
+.we_know_how_to_do_these_things .card-item {
+  font-size: clamp(0.85rem, 1.05vw, 1.15rem);
+  font-family: var(--font-mono);
+  padding: 0.75vw 0;
+  border-bottom: 1px solid var(--border-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.we_know_how_to_do_these_things .card-item:hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+.we_know_how_to_do_these_things .card-item:last-child {
+  border-bottom: none;
+}
+
+.we_know_how_to_do_these_things .item-spec {
+  font-size: 0.75em;
+  color: var(--text-dim);
+  border: 1px solid var(--border-line);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.dverso_card .card-footer-action {
+  margin-top: 1.2vw;
+  padding-top: 1vw;
+  border-top: 1px dashed var(--border-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.card-footer-action .btn-card {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- Section 02: Selected Works / Origins Directory (.projects) --- */
+.projects_section {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  padding: 8vw 0 6vw 0;
+  border-top: 1.5px solid var(--border-strong);
+}
+
+.projects_header {
+  padding: 0 var(--gutter) 3vw var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.projects_title {
+  font-family: var(--font-pixel);
+  font-size: clamp(3rem, 6.5vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.projects_title .accent-sub {
+  color: var(--accent);
+  display: block;
+  font-size: 0.35em;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8vw;
+}
+
+.projects_subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1vw, 1.1rem);
+  color: var(--text-sub);
+  max-width: 380px;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* The Projects Scroller */
+.projects {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project {
+  border-top: 1.5px solid var(--border-strong);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: grid;
+  font-family: var(--font-pixel);
+  font-size: clamp(1.4rem, 1.875vw, 2.2rem);
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr auto;
+  padding: 1.8vw var(--gutter);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  align-items: center;
+  position: relative;
+}
+
+.project:last-child {
+  border-bottom: 1.5px solid var(--border-strong);
+}
+
+.project span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project .proj-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.project .proj-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--text-dim);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.project .proj-type {
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  color: var(--text-sub);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.project .proj-year {
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  color: var(--text-dim);
+}
+
+.project .proj-link {
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  color: var(--text-sub);
+}
+
+.project .proj-arrow {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-15px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Animation like Dverso */
+.project:hover {
+  background-color: rgba(255, 76, 0, 0.06);
+  padding-top: 2.34vw;
+  padding-bottom: 2.34vw;
+}
+
+.project:hover .proj-name {
+  color: var(--accent);
+  transform: translateX(12px);
+}
+
+.project:hover .proj-dot {
+  background-color: var(--accent);
+  transform: scale(1.4);
+}
+
+/* --- Menu Filter Bar & Project Layout --- */
+.menu_filter_bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 var(--gutter) 2.5vw var(--gutter);
+  border-bottom: 1.5px solid var(--border-strong);
+}
+
+.filter_pill {
+  background: transparent;
+  border: 1px solid var(--border-line);
+  color: var(--text-sub);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.85vw, 0.9rem);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter_pill:hover,
+.filter_pill.is-active {
+  background-color: var(--text-main);
+  color: var(--bg-main);
+  border-color: var(--text-main);
+}
+
+.project .proj-price {
+  font-family: var(--font-mono);
+  font-size: 0.6em;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(255, 76, 0, 0.08);
+  border: 1px solid var(--accent);
+  padding: 4px 12px;
+  border-radius: 14px;
+  white-space: nowrap;
+}
+
+.project .proj-desc-cell {
+  font-family: var(--font-mono);
+  font-size: 0.52em;
+  color: var(--text-sub);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project.is-hidden {
+  display: none !important;
+}
+
+/* --- Section 03: Interactive Web Lab / Metaverse Statement --- */
+.lab_section {
+  position: relative;
+  width: 100vw;
+  min-height: 80vh;
+  border-top: 1.5px solid var(--border-strong);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  background-color: var(--bg-main);
+}
+
+.lab_statement {
+  padding: 6vw var(--gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1.5px solid var(--border-strong);
+}
+
+.lab_headline {
+  font-family: var(--font-pixel);
+  font-size: clamp(2.8rem, 5.5vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.lab_headline mark {
+  background: none;
+  color: var(--accent);
+}
+
+.lab_body {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--text-sub);
+  margin-top: 3vw;
+  max-width: 620px;
+}
+
+.lab_metrics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.metric_box {
+  padding: 3vw 4vw;
+  border-bottom: 1px solid var(--border-line);
+}
+
+.metric_box:last-child {
+  border-bottom: none;
+}
+
+.metric_label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5vw;
+  display: block;
+}
+
+.metric_value {
+  font-family: var(--font-pixel);
+  font-size: clamp(2.5rem, 4vw, 4.2rem);
+  color: var(--text-main);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.metric_unit {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+/* --- Fullscreen Dverso Menu Overlay (.dverso_menu_content) --- */
+.dverso_menu_content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(25px) grayscale(0.6) brightness(1.1);
+  background-color: rgba(252, 246, 231, 0.88);
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease-dverso), visibility 0.4s;
+  z-index: 9999;
+  padding: var(--gutter);
+  overflow-y: auto;
+}
+
+[data-theme="dark"] .dverso_menu_content {
+  background-color: rgba(10, 10, 10, 0.92);
+}
+
+.dverso_menu_content.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.dverso_menu_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4vh;
+}
+
+.dverso_menu_nav {
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  gap: 2vh;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.dverso_menu_nav h1 {
+  color: var(--text-main);
+  font-family: var(--font-pixel);
+  font-size: clamp(3.5rem, 8vw, 9vw);
+  font-weight: 500;
+  line-height: 0.92;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.dverso_menu_nav h1:hover {
+  color: var(--accent);
+  transform: translateX(3vw);
+}
+
+.dverso_menu_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid var(--border-line);
+  padding-top: 2vw;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* --- Slide-Out Project Dossier Modal --- */
+.dverso_modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(650px, 90vw);
+  height: 100vh;
+  background-color: var(--card-bg);
+  border-left: 2px solid var(--border-strong);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.2);
+  z-index: 10001;
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease-dverso);
+  display: flex;
+  flex-direction: column;
+  padding: 3vw 2.5vw;
+}
+
+.dverso_modal.is-open {
+  transform: translateX(0);
+}
+
+.modal_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal_backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-line);
+  padding-bottom: 1.5vw;
+}
+
+.modal_title {
+  font-family: var(--font-pixel);
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-top: 2vw;
+}
+
+.modal_meta_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5vw;
+  margin: 2vw 0;
+  border-top: 1px solid var(--border-line);
+  border-bottom: 1px solid var(--border-line);
+  padding: 1.5vw 0;
+}
+
+.modal_meta_item .label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+}
+
+.modal_meta_item .val {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.modal_notes {
+  margin-top: 1vw;
+  line-height: 1.7;
+  color: var(--text-sub);
+}
+
+/* --- Dverso Signature Loader with Gradient Blob (.loader) --- */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #1c1c1c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  transition: transform 0.6s var(--ease-dverso);
+}
+
+.loader.hide {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.loader_center {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.loader_brand {
+  font-family: var(--font-pixel);
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.loader .loadingBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background-image: linear-gradient(to right, #d3d3d3 0, #d3d3d3 var(--completion, 0%), transparent var(--completion, 0%));
+}
+
+.loader .loadingBar p {
+  color: #d3d3d3;
+  font-family: var(--font-pixel);
+  font-size: 44px;
+  font-weight: 100;
+  line-height: 1;
+  mix-blend-mode: difference;
+  text-align: left;
+  padding-left: var(--gutter);
+}
+
+/* Gradient blob effect behind loader */
+.gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.gradient-blob {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 76, 0, 0.45) 0%, rgba(0, 111, 255, 0.15) 60%, transparent 80%);
+  filter: blur(80px);
+  animation: blob-float 12s infinite alternate ease-in-out;
+}
+
+@keyframes blob-float {
+  0% { transform: translate(-10%, -10%) scale(1); }
+  100% { transform: translate(30%, 30%) scale(1.3); }
+}
+
+/* --- Responsive Media Queries --- */
+@media screen and (max-width: 1024px) {
+  .dverso_cards_stage {
+    width: 90vw;
+  }
+  .dverso_card {
+    width: 38vw;
+    height: 45vw;
+  }
+  .project {
+    grid-template-columns: 2fr 1fr auto;
+  }
+  .project .proj-year,
+  .project .proj-link {
+    display: none;
+  }
+  .lab_section {
+    grid-template-columns: 1fr;
+  }
+  .lab_statement {
+    border-right: none;
+    border-bottom: 1.5px solid var(--border-strong);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --gutter: 5vw;
+  }
+  .dverso_cards_stage {
+    flex-direction: column;
+    height: auto;
+    gap: 4vw;
+    padding-top: 14vh;
+  }
+  .dverso_card {
+    width: 88vw;
+    max-width: none;
+    height: auto;
+    min-height: auto;
+    padding: 6vw;
+    border-radius: 18px;
+  }
+  .dverso_hero_wrap {
+    height: auto;
+    min-height: 100vh;
+    padding: 20vh 0 10vh 0;
+  }
+  .dverso_center_title {
+    top: 28%;
+  }
+  .projects_header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3vw;
+  }
+  .projects_subtitle {
+    text-align: left;
+  }
+  .project {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    padding: 4vw var(--gutter);
+  }
+  .dverso_footer_content {
+    display: none;
+  }
+  .dverso_header_buttons .hide-mobile {
+    display: none;
+  }
+}
