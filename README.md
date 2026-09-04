@@ -1,6 +1,6 @@
 # SHAKESVILLA // HIMALAYAN ARTISANAL ROASTERS & SHAKES LAB
 
-> High-end brutalist, typography-heavy editorial web experience inspired by [dversostudio.io](https://dversostudio.io/?ref=landing.love). Built for an artisanal roastery and craft shakes laboratory based in **Haldwani, Uttarakhand, India** (`29.2183° N, 79.5130° E`).
+> High-end brutalist, typography-heavy editorial web experience . Built for an artisanal roastery and craft shakes laboratory based in **Haldwani, Uttarakhand, India** (`29.2183° N, 79.5130° E`).
 
 ---
 
