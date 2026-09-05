@@ -2,6 +2,9 @@
 
 > High-end brutalist, typography-heavy editorial web experience . Built for an artisanal roastery and craft shakes laboratory based in **Haldwani, Uttarakhand, India** (`29.2183° N, 79.5130° E`).
 
+demo: https://shakesvilla-demo-project.vercel.app/
+
+
 ---
 
 ## ⚡ Highlights & Key Features
